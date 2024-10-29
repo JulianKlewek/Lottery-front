@@ -1,0 +1,41 @@
+<div class="bg-blue-300 py-4">
+  <div class="text-center text-xl font-bold">Następne losowanie odbędzie się za:</div>
+  <div class="countdown-container">
+    <div class="countdown-item">
+      <span class="countdown-value">{{ countdown.days }}</span>
+      <span class="countdown-label">Dni</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-value">{{ countdown.hours }}</span>
+      <span class="countdown-label">Godzin</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-value">{{ countdown.minutes }}</span>
+      <span class="countdown-label">Minut</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-value">{{ countdown.seconds }}</span>
+      <span class="countdown-label">Sekund</span>
+    </div>
+  </div>
+
+  <div class="results-container">
+    <span class="font-bold text-xl">Wyniki ostatniego losowania:</span>
+    <div class="balls-container">
+      <div *ngFor="let number of lotteryResult.numbers" class="ball">
+        {{ number }}
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="flex justify-between p-4 bg-blue-400 text-white mb-10">
+  <div>
+    <a routerLink="">Strona główna</a>
+  </div>
+  <div>
+    <a class="mx-4" routerLink="/new-ticket">Zagraj</a>
+    <a class="mx-4" routerLink="/login">Logowanie</a>
+    <a class="mx-4" routerLink="/register">Rejestracja</a>
+  </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,59 @@
+<div class="container p-4 rounded-lg border m-auto w-1/3">
+  <h1 class="text-center text-xl pb-3 font-bold">Rejestracja</h1>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" placeholder="Email"
+             [ngClass]="{'error-border': email?.invalid && (email?.dirty || email?.touched)}">
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+        <div *ngIf="email?.errors?.['email']">
+          Podany ciąg znaków nie jest adresem email.
+        </div>
+        <div *ngIf="email?.errors?.['required']">
+          Nie wprowadzono adresu email.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="username">Nazwa użytkownika</label>
+      <input type="text" id="username" formControlName="username" placeholder="Nazwa użytkownika"
+             [ngClass]="{'error-border': username?.invalid && (username?.dirty || username?.touched)}">
+      <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+        <div *ngIf="username?.errors?.['minlength']">
+          Nazwa użytkownika musi zawierać minimalnie 6 znaków.
+        </div>
+        <div *ngIf="username?.errors?.['maxlength']">
+          Nazwa użytkownika musi zawierać maksymalnie 20 znaków.
+        </div>
+        <div *ngIf="username?.errors?.['required']">
+          Nie wprowadzono nazwy użytkownika.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Hasło</label>
+      <input type="password" id="password" formControlName="password" placeholder="Hasło" autocomplete="on"
+             [ngClass]="{'error-border': password?.invalid && (password?.dirty || password?.touched)}">
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+        <div *ngIf="password?.errors?.['minlength']">
+          Hasło musi zawierać minimalnie 8 znaków.
+        </div>
+        <div *ngIf="password?.errors?.['maxlength']">
+          Hasło musi zawierać maksymalnie 30 znaków.
+        </div>
+        <div *ngIf="password?.errors?.['required']">
+          Nie wprowadzono hasła.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="!registrationForm.valid">Wyślij</button>
+    </div>
+  </form>
+  <div *ngIf="!successful && errorMsg" class="text-red-500">
+    <div *ngFor="let key of objectKeys(errorMsg)">
+      <strong>{{ key }}:</strong> {{ errorMsg[key] }}
+    </div>
+  </div>
+  <p *ngIf="successful">Rejestracja zakończona pomyślnie</p>
+</div>

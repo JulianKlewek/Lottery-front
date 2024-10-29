@@ -1,0 +1,9 @@
+<div class="p-4 m-auto w-1/3">
+  <div *ngIf="accountActivated">
+    <h1>Twoje konto zostało aktywowane, możesz się zalogować</h1>
+    <a routerLink='/login'>Zaloguj się</a>
+  </div>
+  <div *ngIf="!accountActivated">
+    <h1>Nie udało się aktywować konta</h1>
+  </div>
+</div>
